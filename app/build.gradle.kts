@@ -53,5 +53,6 @@ dependencies {
     implementation(libs.androidx.material3)
     debugImplementation(libs.androidx.ui.tooling)
 
-
+    implementation(libs.dagger)
+    ksp(libs.dagger.compiler)
 }
