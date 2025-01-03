@@ -21,4 +21,11 @@ dependencyResolutionManagement {
 
 rootProject.name = "MediaPlayer"
 include(":app")
- 
+
+fileTree("features")
+    .filter { file -> file.name == "build.gradle.kts" }
+    .forEach { file ->
+        val moduleName = file.parentFile.name
+        include(moduleName)
+        project(":$moduleName").projectDir = file.parentFile
+    }

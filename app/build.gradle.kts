@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
 }
@@ -39,6 +39,10 @@ android {
 }
 
 dependencies {
+    fileTree("$rootDir/features")
+        .filter { file -> file.name == "build.gradle.kts" }
+        .forEach { file -> implementation(project(":${file.parentFile.name}")) }
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.lifecycle.runtime.ktx)
